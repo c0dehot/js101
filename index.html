@@ -17,7 +17,7 @@
         }
     </style>
     <div class="container">
-        <h1>Moni Secure Server</h1>
+        <h1 id='serverTitle'>Moni Secure Server</h1>
 
         <form>
             <div class="form-group">
@@ -51,8 +51,8 @@
 
     <script>
         // global variables
-        var serverTime = Date.UTC
-        console.log( document.querySelector('BODY') );
+        const serverTime = new Date();
+        const serverTitleDOM = document.querySelector('#serverTitle');
 
         // functions
         function loginUser(){
@@ -62,13 +62,15 @@
         function initializeLogin(){
             console.log( `[initializeLogin]` )
 
+            serverTitleDOM.innerHTML = "Loading";
+
             document.querySelector('#formEmail').value = localStorage.email ? localStorage.email : "";
             document.querySelector('#formPassword').value = localStorage.password ? localStorage.password : "";
             document.querySelector('#formAuth').value = localStorage.auth ? localStorage.auth : "2456";
             document.querySelector('#rememberLogin').checked = localStorage.isChecked ? true : false;
 
             // set the server time
-            document.querySelector('footer').innerHTML = new Date();
+            document.querySelector('footer').innerHTML = serverTime;
         }
 
         function toggleRememberLogin(){
@@ -97,6 +99,11 @@
         document.querySelector('#rememberLogin').addEventListener( 'change', toggleRememberLogin );
 
         initializeLogin();
+
+        console.log( `serverTime = ${serverTime}` );
+
+        serverTitleDOM.innerHTML = "Login Ready";
+
     </script>
 </body>
 </html>
