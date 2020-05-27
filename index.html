@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
+    <style>
+        FOOTER {
+            position: fixed;
+            bottom: 5px;
+            left: 5px;
+            font-size: 1rem;
+        }
+    </style>
     <div class="container">
         <h1>Moni Secure Server</h1>
 
@@ -38,11 +46,12 @@
               </div>
             <button id='loginBtn' class='btn btn-lg btn-primary'>Login Now</button>
         </form>
-
     </div>
-    
+    <footer>...</footer>
+
     <script>
         // global variables
+        var serverTime = Date.UTC
         console.log( document.querySelector('BODY') );
 
         // functions
@@ -50,13 +59,16 @@
             console.log( `[loginUser]` )
         }
 
-        function restoreLogin(){
-            console.log( `[restoreLogin]` )
+        function initializeLogin(){
+            console.log( `[initializeLogin]` )
 
             document.querySelector('#formEmail').value = localStorage.email ? localStorage.email : "";
             document.querySelector('#formPassword').value = localStorage.password ? localStorage.password : "";
             document.querySelector('#formAuth').value = localStorage.auth ? localStorage.auth : "2456";
             document.querySelector('#rememberLogin').checked = localStorage.isChecked ? true : false;
+
+            // set the server time
+            document.querySelector('footer').innerHTML = new Date();
         }
 
         function toggleRememberLogin(){
@@ -84,7 +96,7 @@
         document.querySelector('#loginBtn').addEventListener( 'click', loginUser );
         document.querySelector('#rememberLogin').addEventListener( 'change', toggleRememberLogin );
 
-        restoreLogin();
+        initializeLogin();
     </script>
 </body>
 </html>
