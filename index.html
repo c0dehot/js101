@@ -17,6 +17,10 @@
               <input id="formEmail" type="email" class="form-control">
             </div>
             <div class="form-group">
+                <label for="formPassword">Password</label>
+                <input id="formPassword" type="text" class="form-control">
+            </div>
+            <div class="form-group">
               <label for="formAuth">Auth Code</label>
               <select id="formAuth" class="form-control">
                 <option>1345</option>
@@ -49,7 +53,10 @@
         function restoreLogin(){
             console.log( `[restoreLogin]` )
 
-            document.querySelector('#formEmail').value = localStorage.email;
+            document.querySelector('#formEmail').value = localStorage.email ? localStorage.email : "";
+            document.querySelector('#formPassword').value = localStorage.password ? localStorage.password : "";
+            document.querySelector('#formAuth').value = localStorage.auth ? localStorage.auth : "2456";
+            document.querySelector('#rememberLogin').checked = localStorage.isChecked ? true : false;
         }
 
         function toggleRememberLogin(){
@@ -57,11 +64,27 @@
 
             var isChecked = document.querySelector('#rememberLogin').checked;
             console.log( ` .. isChecked: ${isChecked}` )
+
+            if( isChecked ){
+                // remember user login
+                localStorage.email = document.querySelector('#formEmail').value;
+                localStorage.password = document.querySelector('#formPassword').value;
+                localStorage.auth = document.querySelector('#formAuth').value;
+                localStorage.isChecked = true;
+            } else {
+                // un-remember user login
+                delete localStorage.email;
+                delete localStorage.password;
+                delete localStorage.auth;
+                delete localStorage.isChecked;
+            }
         }
 
         // bindings & initialization
         document.querySelector('#loginBtn').addEventListener( 'click', loginUser );
         document.querySelector('#rememberLogin').addEventListener( 'change', toggleRememberLogin );
+
+        restoreLogin();
     </script>
 </body>
 </html>
