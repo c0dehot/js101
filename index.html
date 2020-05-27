@@ -9,34 +9,51 @@
 </head>
 <body>
     <div class="container">
-        <h1>Our order form</h1>
+        <h1>Moni Secure Server</h1>
 
         <form>
             <div class="form-group">
               <label for="formEmail">Email address</label>
-              <input id="formEmail" type="email" class="form-control" placeholder="name@example.com">
+              <input id="formEmail" type="email" class="form-control">
             </div>
             <div class="form-group">
-              <label for="formDonutOrder">Donuts</label>
-              <select id="formDonutOrder" class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+              <label for="formAuth">Auth Code</label>
+              <select id="formAuth" class="form-control">
+                <option>1345</option>
+                <option>2456</option>
+                <option>56773</option>
+                <option>678874</option>
+                <option>5789897</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="formDropoffDesc">Dropoff description</label>
-              <textarea id="formDropoffDesc" class="form-control" rows="3"></textarea>
-            </div>
-            <button id='orderSubmit' class='btn btn-lg btn-primary'>Order Now!</button>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="rememberLogin">
+                <label class="form-check-label" for="rememberLogin">
+                  Remember Login
+                </label>
+              </div>
+            <button id='loginBtn' class='btn btn-lg btn-primary'>Login Now</button>
         </form>
 
     </div>
     
     <script>
+        // global variables
         console.log( document.querySelector('BODY') );
+
+        // functions
+        function loginUser(){
+
+        }
+
+        function restoreLogin(){
+
+        }
+        
+        // bindings & initialization
+        document.querySelector('#formEmail').value = localStorage.email;
+
+        document.querySelector('#loginBtn').addEventListener( 'click', loginUser );
 
     </script>
 </body>
