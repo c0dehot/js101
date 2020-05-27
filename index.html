@@ -27,7 +27,7 @@
               </select>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="rememberLogin">
+                <input class="form-check-input" type="checkbox" value="1" id="rememberLogin">
                 <label class="form-check-label" for="rememberLogin">
                   Remember Login
                 </label>
@@ -43,18 +43,25 @@
 
         // functions
         function loginUser(){
-
+            console.log( `[loginUser]` )
         }
 
         function restoreLogin(){
+            console.log( `[restoreLogin]` )
 
+            document.querySelector('#formEmail').value = localStorage.email;
         }
-        
+
+        function toggleRememberLogin(){
+            console.log( `[toggleRememberLogin]` )
+
+            var isChecked = document.querySelector('#rememberLogin').checked;
+            console.log( ` .. isChecked: ${isChecked}` )
+        }
+
         // bindings & initialization
-        document.querySelector('#formEmail').value = localStorage.email;
-
         document.querySelector('#loginBtn').addEventListener( 'click', loginUser );
-
+        document.querySelector('#rememberLogin').addEventListener( 'change', toggleRememberLogin );
     </script>
 </body>
 </html>
